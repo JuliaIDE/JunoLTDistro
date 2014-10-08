@@ -8,6 +8,8 @@ plugins = [("one-more-minute/Julia-LT", "0.9.1"),
            ("one-more-minute/Reminisce", "0.3.2"),
            ("eldargab/LT-Opener", "0.2.0")]
 
+disabled = Set(["LT-Opener"])
+
 # Utils
 
 copy(a, b) = run(`cp -r $a $b`)
@@ -88,7 +90,8 @@ function appnw(folder)
 
   for (plugin, _) in plugins
     name = basename(plugin)
-    copy("deps/$name", "$folder/plugins/$name/")
+    name in disabled ||
+      copy("deps/$name", "$folder/plugins/$name/")
   end
 end
 
@@ -100,6 +103,7 @@ mv("dist/mac/light", "dist/mac/juno")
 
 copy("icons/icon.icns", "dist/mac/Juno.app/Contents/Resources/app.icns")
 copy("Info.plist", "dist/mac/Juno.app/Contents/Info.plist")
+copy("deps/LT-Opener", "dist/mac/Juno.app/Contents/Resources/app.nw/plugins/LT-Opener/")
 
 appnw("dist/mac/Juno.app/Contents/Resources/app.nw")
 
