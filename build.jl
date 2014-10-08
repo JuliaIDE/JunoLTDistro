@@ -85,6 +85,11 @@ function appnw(folder)
   copy("Juno.html", "$folder/core/Juno.html")
   copy("juno.jpg", "$folder/core/juno.jpg")
   copy("icons/icon.png", "$folder/core/img/icon.png")
+
+  for (plugin, _) in plugins
+    name = basename(plugin)
+    copy("deps/$name", "$folder/plugins/$name/")
+  end
 end
 
 # Mac
