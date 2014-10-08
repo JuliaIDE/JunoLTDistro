@@ -69,6 +69,16 @@ cd("deps") do
       end
     end
   end
+
+  for (platform, url) in ["mac"     => "osx/x64/0.3/julia-0.3.1-osx10.7+.dmg",
+                          "windows" => "winnt/x86/0.3/julia-0.3.1-win32.exe"]
+    if !isdir("jl-$platform")
+      mkdir("jl-$platform")
+      cd("jl-$platform") do
+        run(`curl -O https://s3.amazonaws.com/julialang/bin/$url`)
+      end
+    end
+  end
 end
 
 # Build
