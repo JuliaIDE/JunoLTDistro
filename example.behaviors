@@ -1,0 +1,13 @@
+;; User behaviors
+;; -----------------------------
+;; http://junolab.org/docs/settings.html
+
+{:+ {:app [(:lt.objs.style/set-skin "dark")
+           :lt.objs.langs.julia/light-theme]
+
+     ; These settings will apply to all editors
+     :editor [(:lt.objs.style/set-theme "june")
+              (:lt.objs.editor/tab-settings false 2 2)]
+
+    ; Settings placed here will apply to Julia editors only
+    :editor.julia []}}
