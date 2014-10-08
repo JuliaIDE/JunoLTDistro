@@ -57,13 +57,13 @@ cd("deps") do
     end
   end
 
-  for (platform, url) in ["mac"    =>"http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/0.6.2/LightTableMac.zip",
-                          "windows"=>"http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/0.6.0/LightTableWin.zip",
-                          "linux"  =>"http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/0.6.0/LightTableLinux.tar.gz"]
-    if !isdir(platform)
-      mkdir(platform)
-      cd(platform) do
-        loadzip(url)
+  for (platform, url) in ["mac"    =>"0.6.2/LightTableMac.zip",
+                          "windows"=>"0.6.0/LightTableWin.zip",
+                          "linux"  =>"0.6.0/LightTableLinux.tar.gz"]
+    if !isdir("lt-$platform")
+      mkdir("lt-$platform")
+      cd("lt-$platform") do
+        loadzip("http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/$url")
       end
     end
   end
@@ -97,7 +97,7 @@ end
 
 # Mac
 
-copy("deps/mac", "dist/mac")
+copy("deps/lt-mac", "dist/mac")
 mv("dist/mac/LightTable.app", "dist/mac/Juno.app")
 mv("dist/mac/light", "dist/mac/juno")
 
@@ -109,12 +109,12 @@ appnw("dist/mac/Juno.app/Contents/Resources/app.nw")
 
 # Windows
 
-copy("deps/windows", "dist/windows")
+copy("deps/lt-windows", "dist/windows")
 mv("dist/windows/LightTable.exe", "dist/windows/Juno.exe")
 appnw("dist/windows")
 
 # Linux
 
-copy("deps/linux", "dist/linux")
+copy("deps/lt-linux", "dist/linux")
 mv("dist/linux/LightTable", "dist/linux/Juno")
 appnw("dist/linux")
