@@ -1,3 +1,5 @@
+#!/usr/local/bin/julia
+
 LTVER = "0.6.7"
 
 plugins = [("one-more-minute/Julia-LT", "0.9.1"),
