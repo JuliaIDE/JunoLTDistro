@@ -21,7 +21,7 @@ function clone(url, branch = "master")
   end
 end
 
-function loadzip(url, folder = "LightTable")
+function loadzip(url, folder = nothing)
   file = basename(url)
   run(`curl -O $url`)
   if endswith(file, ".zip")
@@ -32,11 +32,13 @@ function loadzip(url, folder = "LightTable")
     error("can't unzip $file")
   end
   rm(file)
-  mv(folder, "temp")
-  for f in readdir("temp")
-    mv("temp/$f", "$f")
+  if folder != nothing
+    mv(folder, "temp")
+    for f in readdir("temp")
+      mv("temp/$f", "$f")
+    end
+    rm("temp", recursive = true)
   end
-  rm("temp", recursive = true)
 end
 
 # Grab deps
@@ -63,7 +65,7 @@ cd("deps") do
     if !isdir("lt-$platform")
       mkdir("lt-$platform")
       cd("lt-$platform") do
-        loadzip("http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/$url")
+        loadzip("http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/$url", "LightTable")
       end
     end
   end
