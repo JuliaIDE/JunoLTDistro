@@ -23,7 +23,7 @@ end
 
 function loadzip(url, folder = nothing)
   file = basename(url)
-  run(`curl -O $url`)
+  !isfile(file) && run(`curl -O $url`)
   if endswith(file, ".zip")
     run(`unzip $file`)
   elseif endswith(file, ".tar.gz")
