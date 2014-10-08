@@ -87,9 +87,9 @@ end
 
 # Mac
 
-mkdir("dist/mac")
-copy("deps/mac/LightTable.app", "dist/mac/Juno.app")
-copy("deps/mac/light", "dist/mac/juno")
+copy("deps/mac", "dist/mac")
+mv("dist/mac/LightTable.app", "dist/mac/Juno.app")
+mv("dist/mac/light", "dist/mac/juno")
 
 copy("icons/icon.icns", "dist/mac/Juno.app/Contents/Resources/app.icns")
 copy("Info.plist", "dist/mac/Juno.app/Contents/Info.plist")
@@ -105,5 +105,5 @@ appnw("dist/windows")
 # Linux
 
 copy("deps/linux", "dist/linux")
-mv("dist/windows/LightTable", "dist/windows/Juno")
+mv("dist/linux/LightTable", "dist/linux/Juno")
 appnw("dist/linux")
