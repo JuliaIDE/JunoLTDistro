@@ -59,9 +59,9 @@ cd("deps") do
     end
   end
 
-  for (platform, url) in ["mac"    =>"0.6.2/LightTableMac.zip",
-                          "windows"=>"0.6.0/LightTableWin.zip",
-                          "linux"  =>"0.6.0/LightTableLinux.tar.gz"]
+  for (platform, url) in ["mac"     => "0.6.2/LightTableMac.zip",
+                          "windows" => "0.6.0/LightTableWin.zip",
+                          "linux"   => "0.6.0/LightTableLinux.tar.gz"]
     if !isdir("lt-$platform")
       mkdir("lt-$platform")
       cd("lt-$platform") do
