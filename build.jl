@@ -1,5 +1,10 @@
 #!/usr/local/bin/julia
 
+# Notes:
+#  * Julia binaries must be available in deps/jl-windows and deps/jl-mac
+#  * The OS X Julia binaries seem to double in size when copied this way,
+#    so best to repeat manually.
+
 LTVER = "0.6.7"
 
 plugins = [("one-more-minute/Julia-LT", "0.9.1"),
