@@ -110,17 +110,15 @@ end
 
 # Mac
 
-copy("deps/lt-mac", "dist/mac")
-mv("dist/mac/LightTable.app", "dist/mac/Juno.app")
-mv("dist/mac/light", "dist/mac/juno")
+copy("deps/lt-mac/LightTable.app", "dist/Juno.app")
 
-copy("icons/icon.icns", "dist/mac/Juno.app/Contents/Resources/app.icns")
-copy("Info.plist", "dist/mac/Juno.app/Contents/Info.plist")
-copy("deps/LT-Opener", "dist/mac/Juno.app/Contents/Resources/app.nw/plugins/LT-Opener/")
+copy("icons/icon.icns", "dist/Juno.app/Contents/Resources/app.icns")
+copy("Info.plist", "dist/Juno.app/Contents/Info.plist")
+copy("deps/LT-Opener", "dist/Juno.app/Contents/Resources/app.nw/plugins/LT-Opener/")
 
-appnw("dist/mac/Juno.app/Contents/Resources/app.nw")
+appnw("dist/Juno.app/Contents/Resources/app.nw")
 
-copy("deps/jl-mac", "dist/mac/Juno.app/Contents/Resources/app.nw/julia")
+copy("deps/jl-mac", "dist/Juno.app/Contents/Resources/app.nw/julia")
 
 # Windows
 
