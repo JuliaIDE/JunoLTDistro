@@ -97,3 +97,13 @@ copy("Info.plist", "dist/mac/Juno.app/Contents/Info.plist")
 appnw("dist/mac/Juno.app/Contents/Resources/app.nw")
 
 # Windows
+
+copy("deps/windows", "dist/windows")
+mv("dist/windows/LightTable.exe", "dist/windows/Juno.exe")
+appnw("dist/windows")
+
+# Linux
+
+copy("deps/linux", "dist/linux")
+mv("dist/windows/LightTable", "dist/windows/Juno")
+appnw("dist/linux")
