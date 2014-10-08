@@ -120,11 +120,14 @@ copy("deps/LT-Opener", "dist/mac/Juno.app/Contents/Resources/app.nw/plugins/LT-O
 
 appnw("dist/mac/Juno.app/Contents/Resources/app.nw")
 
+copy("deps/jl-mac", "dist/mac/Juno.app/Contents/Resources/app.nw/julia")
+
 # Windows
 
 copy("deps/lt-windows", "dist/windows")
 mv("dist/windows/LightTable.exe", "dist/windows/Juno.exe")
 appnw("dist/windows")
+copy("deps/jl-windows", "dist/windows/julia")
 
 # Linux
 
