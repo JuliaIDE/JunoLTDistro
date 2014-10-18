@@ -131,6 +131,9 @@ copy("deps/lt-windows", "dist/windows")
 mv("dist/windows/LightTable.exe", "dist/windows/Juno.exe")
 appnw("dist/windows")
 copy("deps/jl-windows", "dist/windows/julia")
+rm("dist/windows/julia/Uninstall.exe")
+rm("dist/windows/julia/julia.lnk")
+copy("icons/icon.ico", "dist/windows/juno.ico")
 
 # Linux
 
