@@ -3,7 +3,7 @@
 using Lazy
 
 # Notes:
-#  * Julia binaries must be available in deps/jl-windows and deps/jl-mac
+#  * Julia binaries must be available in ../jl-windows and ../jl-mac
 #  * The OS X Julia binaries seem to double in size when copied this way,
 #    so best to repeat manually.
 
@@ -74,17 +74,6 @@ cd("deps") do
       cd("lt-$platform") do
         loadzip("http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/$url", "LightTable")
       end
-    end
-  end
-
-  for (platform, url) in @d("mac"     => "osx/x64/0.3/julia-0.3.3-osx10.7+.dmg",
-                            "windows" => "winnt/x86/0.3/julia-0.3.3-win32.exe")
-    if !isdir("jl-$platform")
-      mkdir("jl-$platform")
-      cd("jl-$platform") do
-        run(`curl -O https://s3.amazonaws.com/julialang/bin/$url`)
-      end
-      error("Please unzip $platform Julia binaries.")
     end
   end
 end
