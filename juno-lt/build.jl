@@ -4,7 +4,7 @@ using Lazy
 
 # Notes:
 #  * Julia binaries must be available in ../jl-windows and ../jl-mac
-#  * The OS X Julia binaries seem to double in size when copied this way,
+#  * The Julia binaries seem to double in size when copied via cp,
 #    so best to repeat manually.
 
 LTVER = "0.7.2"
@@ -115,14 +115,14 @@ copy("deps/LT-Opener", "dist/Juno.app/Contents/Resources/app.nw/plugins/LT-Opene
 
 appnw("dist/Juno.app/Contents/Resources/app.nw")
 
-copy("deps/jl-mac", "dist/Juno.app/Contents/Resources/app.nw/julia")
+copy("../jl-mac", "dist/Juno.app/Contents/Resources/app.nw/julia")
 
 # Windows
 
 copy("deps/lt-windows", "dist/windows")
 mv("dist/windows/LightTable.exe", "dist/windows/Juno.exe")
 appnw("dist/windows")
-copy("deps/jl-windows", "dist/windows/julia")
+copy("../jl-windows", "dist/windows/julia")
 rm("dist/windows/julia/Uninstall.exe")
 rm("dist/windows/julia/julia.lnk")
 copy("icons/icon.ico", "dist/windows/juno.ico")
