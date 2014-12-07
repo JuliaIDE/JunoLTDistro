@@ -7,10 +7,10 @@ using Lazy
 #  * The OS X Julia binaries seem to double in size when copied this way,
 #    so best to repeat manually.
 
-LTVER = "0.6.7"
+LTVER = "0.7.2"
 
-plugins = [("one-more-minute/Julia-LT", "0.9.1"),
-           ("one-more-minute/Juno-LT", "0.9.0"),
+plugins = [("one-more-minute/Julia-LT", "0.9.3"),
+           ("one-more-minute/Juno-LT", "0.9.2"),
            ("one-more-minute/June-LT", "0.3.0"),
            ("one-more-minute/Reminisce", "0.3.2"),
            ("eldargab/LT-Opener", "0.2.0")]
@@ -66,9 +66,9 @@ cd("deps") do
     end
   end
 
-  for (platform, url) in @d("mac"     => "0.6.2/LightTableMac.zip",
-                            "windows" => "0.6.0/LightTableWin.zip",
-                            "linux"   => "0.6.0/LightTableLinux.tar.gz")
+  for (platform, url) in @d("mac"     => "0.7.0/LightTableMac.zip",
+                            "windows" => "0.7.0/LightTableWin.zip",
+                            "linux"   => "0.7.0/LightTableLinux.tar.gz")
     if !isdir("lt-$platform")
       mkdir("lt-$platform")
       cd("lt-$platform") do
@@ -77,8 +77,8 @@ cd("deps") do
     end
   end
 
-  for (platform, url) in @d("mac"     => "osx/x64/0.3/julia-0.3.1-osx10.7+.dmg",
-                            "windows" => "winnt/x86/0.3/julia-0.3.1-win32.exe")
+  for (platform, url) in @d("mac"     => "osx/x64/0.3/julia-0.3.3-osx10.7+.dmg",
+                            "windows" => "winnt/x86/0.3/julia-0.3.3-win32.exe")
     if !isdir("jl-$platform")
       mkdir("jl-$platform")
       cd("jl-$platform") do
