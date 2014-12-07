@@ -1,5 +1,7 @@
 #!/usr/local/bin/julia
 
+using Lazy
+
 # Notes:
 #  * Julia binaries must be available in deps/jl-windows and deps/jl-mac
 #  * The OS X Julia binaries seem to double in size when copied this way,
@@ -64,9 +66,9 @@ cd("deps") do
     end
   end
 
-  for (platform, url) in ["mac"     => "0.6.2/LightTableMac.zip",
-                          "windows" => "0.6.0/LightTableWin.zip",
-                          "linux"   => "0.6.0/LightTableLinux.tar.gz"]
+  for (platform, url) in @d("mac"     => "0.6.2/LightTableMac.zip",
+                            "windows" => "0.6.0/LightTableWin.zip",
+                            "linux"   => "0.6.0/LightTableLinux.tar.gz")
     if !isdir("lt-$platform")
       mkdir("lt-$platform")
       cd("lt-$platform") do
@@ -75,8 +77,8 @@ cd("deps") do
     end
   end
 
-  for (platform, url) in ["mac"     => "osx/x64/0.3/julia-0.3.1-osx10.7+.dmg",
-                          "windows" => "winnt/x86/0.3/julia-0.3.1-win32.exe"]
+  for (platform, url) in @d("mac"     => "osx/x64/0.3/julia-0.3.1-osx10.7+.dmg",
+                            "windows" => "winnt/x86/0.3/julia-0.3.1-win32.exe")
     if !isdir("jl-$platform")
       mkdir("jl-$platform")
       cd("jl-$platform") do
