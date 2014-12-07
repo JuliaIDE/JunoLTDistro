@@ -105,7 +105,7 @@ function appnw(folder)
   copy("deps/LightTable/deploy/settings", folder)
   copy("package.json", "$folder/package.json")
   copy("Juno.html", "$folder/core/Juno.html")
-  copy("juno.png", "$folder/core/juno.jpg")
+  copy("juno.png", "$folder/core/juno.png")
   copy("icons/icon.png", "$folder/core/img/icon.png")
 
   for (plugin, _) in plugins
