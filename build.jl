@@ -101,7 +101,7 @@ mkdir("dist")
 
 function appnw(folder)
   copy("deps/LightTable/deploy/core", folder)
-  copy("example.behaviors", "$folder/core/misc/example.behaviors")
+  copy("example.behaviors", "$folder/core/User/user.behaviors")
   copy("deps/LightTable/deploy/settings", folder)
   copy("package.json", "$folder/package.json")
   copy("Juno.html", "$folder/core/Juno.html")
