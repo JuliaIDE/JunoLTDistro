@@ -52,7 +52,7 @@ end
 cd("deps") do
   if !isdir("LightTable")
     clone("http://github.com/LightTable/LightTable", LTVER)
-    cd(name) do
+    cd("LightTable") do
       run(`lein clean` & `lein cljsbuild once`)
     end
   end
