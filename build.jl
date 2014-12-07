@@ -84,6 +84,7 @@ cd("deps") do
       cd("jl-$platform") do
         run(`curl -O https://s3.amazonaws.com/julialang/bin/$url`)
       end
+      error("Please unzip $platform Julia binaries.")
     end
   end
 end
