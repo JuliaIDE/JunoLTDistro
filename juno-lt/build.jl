@@ -4,10 +4,11 @@ using Lazy
 
 # Notes:
 #  * Julia binaries must be available in ../jl-windows and ../jl-mac
+#  * Atom-shell must be available in deps/atom-$os
 #  * The Julia binaries seem to double in size when copied via cp,
 #    so best to repeat manually.
 
-LTVER = "0.7.2"
+LTVER = "atom-shell"
 
 plugins = [("one-more-minute/Julia-LT", "0.9.3"),
            ("one-more-minute/Juno-LT", "0.9.2"),
@@ -19,7 +20,7 @@ disabled = Set(["LT-Opener"])
 
 # Utils
 
-copy(a, b) = run(`cp -r $a $b`)
+copy(a, b) = run(`cp -a $a $b`)
 
 function clone(url, branch = "master")
   run(`git clone $url`)
@@ -66,16 +67,16 @@ cd("deps") do
     end
   end
 
-  for (platform, url) in @d("mac"     => "0.7.0/LightTableMac.zip",
-                            "windows" => "0.7.0/LightTableWin.zip",
-                            "linux"   => "0.7.0/LightTableLinux.tar.gz")
-    if !isdir("lt-$platform")
-      mkdir("lt-$platform")
-      cd("lt-$platform") do
-        loadzip("http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/$url", "LightTable")
-      end
-    end
-  end
+  # for (platform, url) in @d("mac"     => "0.7.0/LightTableMac.zip",
+  #                           "windows" => "0.7.0/LightTableWin.zip",
+  #                           "linux"   => "0.7.0/LightTableLinux.tar.gz")
+  #   if !isdir("lt-$platform")
+  #     mkdir("lt-$platform")
+  #     cd("lt-$platform") do
+  #       loadzip("http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/$url", "LightTable")
+  #     end
+  #   end
+  # end
 end
 
 # Build
@@ -89,46 +90,49 @@ if isdir("dist")
 end
 mkdir("dist")
 
-function appnw(folder)
+function app(folder)
+  mkdir(folder)
   copy("deps/LightTable/deploy/core", folder)
   copy("example.behaviors", "$folder/core/User/user.behaviors")
   copy("deps/LightTable/deploy/settings", folder)
+  copy("deps/LightTable/deploy/plugins", folder)
   copy("package.json", "$folder/package.json")
-  copy("Juno.html", "$folder/core/Juno.html")
+  copy("LightTable.html", "$folder/core/LightTable.html")
   copy("juno.png", "$folder/core/juno.png")
   copy("icons/icon.png", "$folder/core/img/icon.png")
 
   for (plugin, _) in plugins
     name = basename(plugin)
     name in disabled ||
-      copy("deps/$name", "$folder/plugins/$name/")
+      copy("deps/$name", "$folder/plugins")
   end
 end
 
 # Mac
 
-copy("deps/lt-mac/LightTable.app", "dist/Juno.app")
+copy("deps/atom-mac/Atom.app", "dist/Juno.app")
 
 copy("icons/icon.icns", "dist/Juno.app/Contents/Resources/app.icns")
+
 copy("Info.plist", "dist/Juno.app/Contents/Info.plist")
-copy("deps/LT-Opener", "dist/Juno.app/Contents/Resources/app.nw/plugins/LT-Opener/")
 
-appnw("dist/Juno.app/Contents/Resources/app.nw")
+app("dist/Juno.app/Contents/Resources/app")
+copy("deps/LT-Opener", "dist/Juno.app/Contents/Resources/app/plugins/LT-Opener/")
 
-copy("../jl-mac", "dist/Juno.app/Contents/Resources/app.nw/julia")
+# copy("../jl-mac", "dist/Juno.app/Contents/Resources/app.nw/julia")
 
 # Windows
 
-copy("deps/lt-windows", "dist/windows")
-mv("dist/windows/LightTable.exe", "dist/windows/Juno.exe")
-appnw("dist/windows")
-copy("../jl-windows", "dist/windows/julia")
-rm("dist/windows/julia/Uninstall.exe")
-rm("dist/windows/julia/julia.lnk")
-copy("icons/icon.ico", "dist/windows/juno.ico")
+# copy("deps/lt-windows", "dist/windows")
+# mv("dist/windows/LightTable.exe", "dist/windows/Juno.exe")
+# appnw("dist/windows")
+# copy("../jl-windows", "dist/windows/julia")
+# rm("dist/windows/julia/Uninstall.exe")
+# rm("dist/windows/julia/julia.lnk")
+# copy("icons/icon.ico", "dist/windows/juno.ico")
 
 # Linux
 
-copy("deps/lt-linux", "dist/linux")
-mv("dist/linux/LightTable", "dist/linux/Juno")
-appnw("dist/linux")
+# copy("deps/lt-linux", "dist/linux")
+# mv("dist/linux/LightTable", "dist/linux/Juno")
+# appnw("dist/linux")
