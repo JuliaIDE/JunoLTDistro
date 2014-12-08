@@ -5,17 +5,17 @@
 	<key>BuildMachineOSBuild</key>
 	<string>13F34</string>
 	<key>CFBundleDisplayName</key>
-	<string>Atom</string>
+	<string>Juno</string>
 	<key>CFBundleExecutable</key>
 	<string>Atom</string>
 	<key>CFBundleIconFile</key>
-	<string>atom.icns</string>
+	<string>app.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.github.atom</string>
+	<string>com.junolab.juno-lt</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Atom</string>
+	<string>Juno</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleVersion</key>
