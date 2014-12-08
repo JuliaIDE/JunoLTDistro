@@ -91,7 +91,7 @@ end
 mkdir("dist")
 
 function app(folder)
-  mkdir(folder)
+  isdir(folder) || mkdir(folder)
   copy("deps/LightTable/deploy/core", folder)
   copy("example.behaviors", "$folder/core/User/user.behaviors")
   copy("deps/LightTable/deploy/settings", folder)
@@ -123,16 +123,17 @@ copy("../jl-mac", "dist/Juno.app/Contents/Resources/app/julia")
 
 # Windows
 
-# copy("deps/lt-windows", "dist/windows")
-# mv("dist/windows/LightTable.exe", "dist/windows/Juno.exe")
-# appnw("dist/windows")
-# copy("../jl-windows", "dist/windows/julia")
-# rm("dist/windows/julia/Uninstall.exe")
-# rm("dist/windows/julia/julia.lnk")
-# copy("icons/icon.ico", "dist/windows/juno.ico")
+copy("deps/atom-win", "dist/windows")
+mv("dist/windows/atom.exe", "dist/windows/Juno.exe")
+mkdir("dist/windows/resources/app")
+app("dist/windows/resources/app")
+copy("../jl-windows", "dist/windows/resources/app/julia")
+rm("dist/windows/resources/app/julia/Uninstall.exe")
+rm("dist/windows/resources/app/julia/julia.lnk")
+copy("icons/icon.ico", "dist/windows/juno.ico")
 
 # Linux
 
-# copy("deps/lt-linux", "dist/linux")
-# mv("dist/linux/LightTable", "dist/linux/Juno")
-# appnw("dist/linux")
+copy("deps/atom-linux", "dist/linux")
+mv("dist/linux/atom", "dist/linux/Juno")
+app("dist/linux/resources/app")
