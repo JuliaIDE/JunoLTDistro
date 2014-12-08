@@ -119,7 +119,7 @@ copy("Info.plist", "dist/Juno.app/Contents/Info.plist")
 app("dist/Juno.app/Contents/Resources/app")
 copy("deps/LT-Opener", "dist/Juno.app/Contents/Resources/app/plugins/LT-Opener/")
 
-# copy("../jl-mac", "dist/Juno.app/Contents/Resources/app.nw/julia")
+copy("../jl-mac", "dist/Juno.app/Contents/Resources/app/julia")
 
 # Windows
 
