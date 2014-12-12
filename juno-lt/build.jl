@@ -99,7 +99,7 @@ function app(folder)
   copy("package.json", "$folder/package.json")
   copy("LightTable.html", "$folder/core/LightTable.html")
   copy("juno.png", "$folder/core/juno.png")
-  copy("icons/icon.png", "$folder/core/img/icon.png")
+  copy("icons/julia.png", "$folder/core/img/icon.png")
 
   for (plugin, _) in plugins
     name = basename(plugin)
@@ -112,7 +112,7 @@ end
 
 copy("deps/atom-mac/Atom.app", "dist/Juno.app")
 
-copy("icons/icon.icns", "dist/Juno.app/Contents/Resources/app.icns")
+copy("icons/julia.icns", "dist/Juno.app/Contents/Resources/app.icns")
 
 copy("Info.plist", "dist/Juno.app/Contents/Info.plist")
 
@@ -130,7 +130,7 @@ app("dist/windows/resources/app")
 copy("../jl-windows", "dist/windows/resources/app/julia")
 rm("dist/windows/resources/app/julia/Uninstall.exe")
 rm("dist/windows/resources/app/julia/julia.lnk")
-copy("icons/icon.ico", "dist/windows/juno.ico")
+copy("icons/julia.ico", "dist/windows/juno.ico")
 
 # Linux
 
