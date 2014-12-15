@@ -110,11 +110,11 @@ end
 
 # Mac
 
-copy("deps/atom-mac/Atom.app", "dist/Juno.app")
+copy("deps/atom-mac/Juno.app", "dist/Juno.app")
 
-copy("icons/julia.icns", "dist/Juno.app/Contents/Resources/app.icns")
+# copy("icons/julia.icns", "dist/Juno.app/Contents/Resources/app.icns")
 
-copy("Info.plist", "dist/Juno.app/Contents/Info.plist")
+# copy("Info.plist", "dist/Juno.app/Contents/Info.plist")
 
 app("dist/Juno.app/Contents/Resources/app")
 copy("deps/LT-Opener", "dist/Juno.app/Contents/Resources/app/plugins/LT-Opener/")
@@ -124,7 +124,7 @@ copy("../jl-mac", "dist/Juno.app/Contents/Resources/app/julia")
 # Windows
 
 copy("deps/atom-win", "dist/windows")
-mv("dist/windows/atom.exe", "dist/windows/Juno.exe")
+# mv("dist/windows/atom.exe", "dist/windows/Juno.exe")
 mkdir("dist/windows/resources/app")
 app("dist/windows/resources/app")
 copy("../jl-windows", "dist/windows/resources/app/julia")
