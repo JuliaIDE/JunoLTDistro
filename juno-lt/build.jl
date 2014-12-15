@@ -5,8 +5,6 @@ using Lazy
 # Notes:
 #  * Julia binaries must be available in ../jl-windows and ../jl-mac
 #  * Atom-shell must be available in deps/atom-$os
-#  * The Julia binaries seem to double in size when copied via cp,
-#    so best to repeat manually.
 
 LTVER = "atom-shell"
 
@@ -49,6 +47,16 @@ function loadzip(url, folder = nothing)
   end
 end
 
+function rm_(f)
+  if isdir(f) || isfile(f)
+    try
+      run(`rm -rf $f`)
+    catch e
+      run (`rm -rf $f`)
+    end
+  end
+end
+
 # Grab deps
 
 !isdir("deps") && mkdir("deps")
@@ -81,13 +89,7 @@ end
 
 # Build
 
-if isdir("dist")
-  try
-    run(`rm -rf dist`) # Sometimes gives rm: dist: Directory not empty
-  catch e
-    run(`rm -rf dist`)
-  end
-end
+rm_("dist")
 mkdir("dist")
 
 function app(folder)
@@ -121,6 +123,14 @@ copy("deps/LT-Opener", "dist/Juno.app/Contents/Resources/app/plugins/LT-Opener/"
 
 copy("../jl-mac", "dist/Juno.app/Contents/Resources/app/julia")
 
+cd("dist") do
+  mkdir("dmg")
+  mv("Juno.app/", "dmg/Juno.app/")
+  run(`ln -s /Applications dmg/Applications`)
+  run(`hdiutil create Juno.dmg -size 400m -ov -volname "Juno" -imagekey zlib-level=9 -srcfolder dmg`)
+  rm_("dmg")
+end
+
 # Windows
 
 copy("deps/atom-win", "dist/windows")
@@ -131,6 +141,11 @@ copy("../jl-windows", "dist/windows/resources/app/julia")
 rm("dist/windows/resources/app/julia/Uninstall.exe")
 rm("dist/windows/resources/app/julia/julia.lnk")
 copy("icons/julia.ico", "dist/windows/juno.ico")
+
+cd("dist") do
+  run(`zip -qr9 windows.zip windows`)
+  rm_("windows")
+end
 
 # Linux
 
