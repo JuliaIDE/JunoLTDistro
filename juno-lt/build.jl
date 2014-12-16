@@ -106,7 +106,7 @@ function app(folder)
   for (plugin, _) in plugins
     name = basename(plugin)
     name in disabled ||
-      copy("deps/$name", "$folder/plugins")
+      run(`cp -aH deps/$name $folder/plugins`)
   end
 end
 
