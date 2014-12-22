@@ -27,26 +27,6 @@ function clone(url, branch = "master")
   end
 end
 
-function loadzip(url, folder = nothing)
-  file = basename(url)
-  !isfile(file) && run(`curl -O $url`)
-  if endswith(file, ".zip")
-    run(`unzip $file`)
-  elseif endswith(file, ".tar.gz")
-    run(`tar -xzf $file`)
-  else
-    error("can't unzip $file")
-  end
-  rm(file)
-  if folder != nothing
-    mv(folder, "temp")
-    for f in readdir("temp")
-      mv("temp/$f", "$f")
-    end
-    rm("temp", recursive = true)
-  end
-end
-
 function rm_(f)
   if isdir(f) || isfile(f)
     try
@@ -74,17 +54,6 @@ cd("deps") do
       clone("http://github.com/$repo", version)
     end
   end
-
-  # for (platform, url) in @d("mac"     => "0.7.0/LightTableMac.zip",
-  #                           "windows" => "0.7.0/LightTableWin.zip",
-  #                           "linux"   => "0.7.0/LightTableLinux.tar.gz")
-  #   if !isdir("lt-$platform")
-  #     mkdir("lt-$platform")
-  #     cd("lt-$platform") do
-  #       loadzip("http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/$url", "LightTable")
-  #     end
-  #   end
-  # end
 end
 
 # Build
