@@ -149,6 +149,13 @@ end
 
 # Linux
 
-copy("deps/atom-linux", "dist/linux")
-mv("dist/linux/atom", "dist/linux/Juno")
-app("dist/linux/resources/app")
+for a = ["32", "64"]
+  copy("deps/atom-linux$a", "dist/linux$a")
+  mv("dist/linux$a/atom", "dist/linux$a/Juno")
+  app("dist/linux$a/resources/app")
+
+  cd("dist") do
+    run(`zip -qr9 linux$a.zip linux$a`)
+    rm_("linux$a")
+  end
+end
