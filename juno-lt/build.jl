@@ -133,18 +133,19 @@ end
 
 # Windows
 
-copy("deps/atom-win", "dist/windows")
-# mv("dist/windows/atom.exe", "dist/windows/Juno.exe")
-mkdir("dist/windows/resources/app")
-app("dist/windows/resources/app")
-copy("../jl-windows", "dist/windows/resources/app/julia")
-rm("dist/windows/resources/app/julia/Uninstall.exe")
-rm("dist/windows/resources/app/julia/julia.lnk")
-copy("icons/julia.ico", "dist/windows/juno.ico")
+for a = ["32"]
+  copy("deps/atom-win", "dist/windows$a")
+  mkdir("dist/windows$a/resources/app")
+  app("dist/windows$a/resources/app")
+  copy("../jl-win$a", "dist/windows$a/resources/app/julia")
+  rm("dist/windows$a/resources/app/julia/Uninstall.exe")
+  rm("dist/windows$a/resources/app/julia/julia.lnk")
+  copy("icons/julia.ico", "dist/windows$a/juno.ico")
 
-cd("dist") do
-  run(`zip -qr9 windows.zip windows`)
-  rm_("windows")
+  cd("dist") do
+    run(`zip -qr9 windows$a.zip windows$a`)
+    rm_("windows$a")
+  end
 end
 
 # Linux

@@ -1,4 +1,5 @@
-juno-lt/deps
-juno-lt/dist
-jl-mac
-jl-windows
+/juno-lt/deps
+/juno-lt/dist
+/jl-mac
+/jl-win32
+/jl-win64
