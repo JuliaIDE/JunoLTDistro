@@ -96,7 +96,7 @@ cd("dist") do
   mkdir("dmg")
   mv("Juno.app/", "dmg/Juno.app/")
   run(`ln -s /Applications dmg/Applications`)
-  run(`hdiutil create juno.dmg -size 400m -ov -volname "Juno" -imagekey zlib-level=9 -srcfolder dmg`)
+  run(`hdiutil create juno.dmg -size 500m -ov -volname "Juno" -imagekey zlib-level=9 -srcfolder dmg`)
   rm_("dmg")
 end
 
