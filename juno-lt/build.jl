@@ -3,7 +3,7 @@
 using Lazy
 
 # Notes:
-#  * Julia binaries must be available in ../jl-windows and ../jl-mac
+#  * Julia binaries must be available in ../jl-windows32/64 and ../jl-mac
 #  * Atom-shell must be available in deps/atom-$os
 
 LTVER = "atom-shell"
@@ -102,7 +102,7 @@ end
 
 # Windows
 
-for a = ["32"]
+for a = ["32", "64"]
   copy("deps/atom-win", "dist/windows$a")
   mkdir("dist/windows$a/resources/app")
   app("dist/windows$a/resources/app")
