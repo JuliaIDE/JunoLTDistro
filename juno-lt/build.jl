@@ -109,7 +109,7 @@ let files = [r"^juno(?!\.exe$)", r"^gen|obj$", r"ninja|environment|gyp"]
   cd("deps/atom-win") do
     for file in files
       try
-        `ls` |> `ggrep -P $(file.pattern)` |> `xargs rm -rf` |> run
+        pipe(`ls`, `ggrep -P $(file.pattern)`, `xargs rm -rf`) |> run
       end
     end
   end
