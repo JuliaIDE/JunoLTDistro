@@ -81,6 +81,8 @@ end
 
 # Mac
 
+println("Oh Sex")
+
 copy("deps/atom-mac/Juno.app", "dist/Juno.app")
 
 # copy("icons/julia.icns", "dist/Juno.app/Contents/Resources/app.icns")
@@ -114,6 +116,7 @@ let files = [r"^juno(?!\.exe$)", r"^gen|obj$", r"ninja|environment|gyp"]
 end
 
 for a = ["32", "64"]
+  println("Windows x$a")
   copy("deps/atom-win", "dist/windows$a")
   mkdir("dist/windows$a/resources/app")
   app("dist/windows$a/resources/app")
@@ -131,6 +134,7 @@ end
 # Linux
 
 for a = ["32", "64"]
+  prinltn("Linux x$a")
   copy("deps/atom-linux$a", "dist/linux$a")
   mv("dist/linux$a/atom", "dist/linux$a/Juno")
   app("dist/linux$a/resources/app")
