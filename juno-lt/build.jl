@@ -134,7 +134,7 @@ end
 # Linux
 
 for a = ["32", "64"]
-  prinltn("Linux x$a")
+  println("Linux x$a")
   copy("deps/atom-linux$a", "dist/linux$a")
   mv("dist/linux$a/atom", "dist/linux$a/Juno")
   app("dist/linux$a/resources/app")
