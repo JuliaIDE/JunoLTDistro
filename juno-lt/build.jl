@@ -68,7 +68,7 @@ function app(folder)
   isdir(folder) || mkdir(folder)
   copy("example.behaviors", "$folder/core/User/user.behaviors")
   copy("package.json", "$folder/package.json")
-  # copy("LightTable.html", "$folder/core/LightTable.html")
+  copy("LightTable.html", "$folder/core/LightTable.html")
   copy("juno.png", "$folder/core/juno.png")
   copy("icons/julia.png", "$folder/core/img/icon.png")
 
