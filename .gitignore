@@ -1,5 +1,4 @@
 /juno-lt/deps
 /juno-lt/dist
-/jl-mac
-/jl-win32
-/jl-win64
+/julia
+/juno-lt/packages/*
