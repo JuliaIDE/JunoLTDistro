@@ -135,6 +135,7 @@ for a = ["32", "64"]
 
   cd("dist") do
     run(`zip -qr9 juno-linux$a.zip juno-linux$a`)
+    rm_("juno-linux$a")
     rm_("linux$a")
   end
 end
