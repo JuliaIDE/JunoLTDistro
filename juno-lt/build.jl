@@ -1,7 +1,5 @@
 #!/usr/local/bin/julia3
 
-# using Lazy
-
 # Notes:
 #  * Julia binaries must be available in ../julia/jl-[mac|[windows|linux][32|64]]
 #  * Atom-shell must be available in deps/lt/lighttable-0.8.0-$os
