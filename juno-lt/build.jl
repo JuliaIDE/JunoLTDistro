@@ -1,6 +1,6 @@
 #!/usr/local/bin/julia3
 
-using Lazy
+# using Lazy
 
 # Notes:
 #  * Julia binaries must be available in ../julia/jl-[mac|[windows|linux][32|64]]
@@ -78,7 +78,8 @@ function app(folder)
       run(`cp -aH deps/$name $folder/plugins`)
   end
 
-  copy("packages/v0.3", "$folder/julia/share/julia/site")
+  mkdir("$folder/julia/packages")
+  copy("packages/v0.3/", "$folder/julia/packages/")
 end
 
 # Mac
