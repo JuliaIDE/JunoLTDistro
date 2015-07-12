@@ -1,4 +1,4 @@
-#!/usr/local/bin/julia
+#!/usr/local/bin/julia3
 
 function upload(f, target)
   println(f)
