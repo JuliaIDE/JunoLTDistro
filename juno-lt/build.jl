@@ -53,7 +53,7 @@ end
 ENV["JULIA_PKGDIR"] = "packages"
 Pkg.init()
 for package in packages
-  Pkg.add(package)
+  Pkg.installed(package) == nothing && Pkg.add(package)
 end
 Pkg.update()
 
