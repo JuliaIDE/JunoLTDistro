@@ -15,5 +15,5 @@ release("signed/juno-mac-x64-signed.dmg")
 
 for arch = ["x32", "x64"]
   release("juno-linux-$arch.zip")
-  release("juno-windows-$arch.zip")
+  release("signed/juno-windows-$arch-signed.zip")
 end
